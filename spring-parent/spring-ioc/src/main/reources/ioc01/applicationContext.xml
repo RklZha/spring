@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--定义一个bean-->
+    <bean id="helloSpring" class="com.rkl.spring.ioc01.entity.HelloSpring">
+        <!--为bean的属性注入一个值，本质上是set方法注入的-->
+        <property name="name" value="Case"></property>
+    </bean>
+
+    <bean id="userDao" class="com.rkl.spring.ioc01.dao.impl.UserDaoImpl"></bean>
+
+    <bean id="userService" class="com.rkl.spring.ioc01.service.impl.UserServiceImpl">
+        <!--通过ref属性注入bean-->
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+    <bean id="springBean" class="com.rkl.spring.ioc01.entity.SpringBean">
+        <property name="helloSpring" ref="helloSpring"></property>
+        <property name="arrays">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>2</value>
+                <value>3</value>
+            </array>
+        </property>
+        <property name="lists">
+            <list>
+                <ref bean="helloSpring"/>
+                <bean class="com.rkl.spring.ioc01.entity.HelloSpring">
+                    <property name="name" value="tom"></property>
+                </bean>
+                <bean class="com.rkl.spring.ioc01.entity.HelloSpring">
+                    <property name="name" value="jack"></property>
+                </bean>
+                <bean class="com.rkl.spring.ioc01.entity.HelloSpring">
+                    <property name="name" value="tom"></property>
+                </bean>
+            </list>
+        </property>
+        <property name="sets">
+            <set>
+                <ref bean="helloSpring"/>
+                <bean class="com.rkl.spring.ioc01.entity.HelloSpring">
+                    <property name="name" value="tom"></property>
+                </bean>
+                <bean class="com.rkl.spring.ioc01.entity.HelloSpring">
+                    <property name="name" value="jack"></property>
+                </bean>
+                <bean class="com.rkl.spring.ioc01.entity.HelloSpring">
+                    <property name="name" value="tom"></property>
+                </bean>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key-ref="helloSpring" value="java.lang.Integer"/>
+            </map>
+        </property>
+        <property name="properties" >
+            <props >
+                <prop key="key1">value1</prop>
+                <prop key="key2">value2</prop>
+            </props>
+
+        </property>
+    </bean>
+
+</beans>

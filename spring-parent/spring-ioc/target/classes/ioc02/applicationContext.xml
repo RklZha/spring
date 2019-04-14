@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--定义一个bean-->
+    <bean id="springBean" class="com.rkl.spring.ioc02.entity.SpringBean" init-method="init" destroy-method="destroy">
+        <property name="id" value="001"></property>
+        <property name="name" value="tom"></property>
+    </bean>
+
+    <bean id="user" class="com.rkl.spring.ioc02.entity.User" init-method="init" destroy-method="destroy">
+        <property name="id" value="${bean.id}"></property>
+        <property name="name" value="${bean.name}"></property>
+        <property name="age" value="${bean.age}"></property>
+    </bean>
+
+</beans>
